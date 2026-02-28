@@ -1,0 +1,53 @@
+==============================
+Task 2 – MBR Partitioning (Ubuntu)
+==============================
+
+# List block devices
+lsblk
+
+# View disk details
+sudo fdisk -l
+
+# Open new disk (example)
+sudo fdisk /dev/nvme1n1
+
+# Inside fdisk:
+n
+p
+1
+(Press Enter for default)
+(Press Enter for default)
+w
+
+# Verify partition
+sudo fdisk -l
+lsblk
+
+# Format partition
+sudo mkfs.ext4 /dev/nvme1n1p1
+
+# Create mount directory
+sudo mkdir /mnt/mypartition
+
+# Mount partition
+sudo mount /dev/nvme1n1p1 /mnt/mypartition
+
+# Verify mount
+df -h
+
+
+==============================
+Task 2 – GPT Partitioning (Windows Server)
+==============================
+
+GUI Steps:
+
+1. Open Server Manager
+2. File and Storage Services
+3. Disks
+4. Right-click new disk → Initialize
+5. Select GPT
+6. Right-click → New Volume
+7. Format as NTFS
+8. Assign Drive Letter
+9. Finish
