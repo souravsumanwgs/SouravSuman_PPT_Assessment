@@ -1,0 +1,27 @@
+ Task 7: Create EFS and mount on multiple Ubuntu instances
+
+Step 1: Create EFS file system (manual creation recommended in console)
+echo "Create EFS via AWS console and note File System ID"
+
+Step 2: Security Group - allow NFS (port 2049) from EC2 instances
+ CLI example (replace sg-xxxx with your security group ID)
+aws ec2 authorize-security-group-ingress 
+    --group-id sg-xxxx 
+    --protocol tcp 
+    --port 2049 
+    --cidr 10.0.0.0/16
+
+ Step 3: Connect to Ubuntu EC2 instances and install NFS client
+sudo apt update
+sudo apt install nfs-common -y
+
+ Step 4: Create mount point and mount EFS
+sudo mkdir /mnt/efs
+ Replace fs-xxxxxxxx with your EFS File System ID and region
+sudo mount -t nfs4 -o nfsvers=4.1 fs-xxxxxxxx.efs.us-east-1.amazonaws.com:/ /mnt/efs
+
+ Step 5: Test shared storage
+ On instance 1
+sudo touch /mnt/efs/testfile.txt
+ On instance 2
+ls /mnt/efs/
