@@ -1,0 +1,26 @@
+ Create Launch Template
+aws ec2 create-launch-template 
+launch-template-name
+version-description 
+launch-template-data 
+
+# Create Target Group for ELB
+aws elbv2 create-target-group 
+  name Task4-TG 
+  protocol HTTP
+  port 80 
+  vpc-id 
+
+# Create Application Load Balancer
+aws elbv2 create-load-balancer 
+  --name Task4-ELB 
+  --subnets subnet
+  --security-groups
+
+# Create Auto Scaling Group attached to ELB Target Group
+aws autoscaling create-auto-scaling-group 
+  --auto-scaling-group-name  
+  --launch-template LaunchTemplateName
+  --min-size 1 --max-size 3 
+  --vpc-zone-identifier
+  --target-group-arns 
