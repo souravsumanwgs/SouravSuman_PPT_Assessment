@@ -1,0 +1,12 @@
+
+# Task 3: Attach EBS Volume from Different AZ
+aws ec2 describe-volumes 
+aws ec2 create-snapshot 
+aws ec2 create-volume 
+aws ec2 attach-volume --volume-id vol-xxxxxxxx --instance-id i-xxxxxxxx --device /dev/sdf
+
+# Mount volume on EC2 instance
+sudo mkfs -t ext4 /dev/xvdf
+sudo mkdir /mnt/task3
+sudo mount /dev/xvdf /mnt/task3
+df -h
