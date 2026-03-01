@@ -1,0 +1,8 @@
+# Update package lists
+sudo apt update
+
+# Install stress tool
+sudo apt install -y stress
+
+# Generate CPU load for testing (2 CPU cores for 5 minutes)
+stress --cpu 2 --timeout 300
