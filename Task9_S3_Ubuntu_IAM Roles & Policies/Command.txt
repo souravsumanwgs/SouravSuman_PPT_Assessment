@@ -1,0 +1,11 @@
+curl http://169.254.169.254/latest/meta-data/iam/info
+
+aws s3 ls
+
+aws s3 mb s3://my-test-bucket-2026
+
+echo "Hello from EC2 Role" > test.txt
+
+aws s3 cp test.txt s3://my-test-bucket-2026/
+
+aws s3 ls s3://my-test-bucket-2026/
